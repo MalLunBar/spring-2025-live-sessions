@@ -40,6 +40,43 @@
           </button>
         </div>
       </section>
+
+      <section id="user-info" hidden>
+        <h2>Your information</h2>
+        <form id="user-info-form">
+          <div class="form-control">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              aria-required="true"
+              aria-describedby="name-error"
+              placeholder="Example: John Doe"
+            />
+            <div id="name-error" class="error" role="alert" hidden></div>
+          </div>
+          <div class="form-control">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              aria-required="true"
+              aria-describedby="email-hint email-error"
+              placeholder="Example: name@example.com"
+            />
+            <div id="email-hint" class="hint">Example: name@example.com</div>
+            <div id="email-error" class="error" role="alert" hidden></div>
+          </div>
+          <div class="form-control">
+            <button type="submit" class="submit-button">
+              Continue to feedback
+            </button>
+          </div>
+        </form>
+      </section>
+      <div id="announcer" class="visually-hidden" aria-live="polite"></div>
     </main>
 
     <footer role="contentinfo">
