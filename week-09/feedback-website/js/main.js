@@ -115,4 +115,66 @@ document.addEventListener('DOMContentLoaded', () => {
       updateProgress();
     });
   });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+    const userAnswers = Object.fromEntries(formData);
+
+    let feedback = `Thank you for your feedback, ${userName}`;
+
+    const detailedFeedback = [];
+
+    if (userAnswers.navigation === 'easy') {
+      detailedFeedback.push(
+        '✓ Navigation: You found the site easy to navigate'
+      );
+    } else if (userAnswers.navigation === 'difficult') {
+      detailedFeedback.push(
+        '! Navigation: You found the site difficult to navigate'
+      );
+    }
+
+    if (userAnswers.readability === 'clear') {
+      detailedFeedback.push('✓ Readability: Content is clear and readable');
+    } else if (userAnswers.readability === 'unclear') {
+      detailedFeedback.push('! Readability: Content needs improvement.');
+    }
+
+    const positiveAnswers = ['easy', 'clear'];
+
+    const userAnswerValues = Object.values(userAnswers);
+
+    let positiveResponses = 0;
+
+    for (const answer of userAnswerValues) {
+      if (positiveAnswers.includes(answer)) {
+        positiveResponses += 1;
+      }
+    }
+    const totalResponses = Object.keys(userAnswers).length;
+    const satisfactionPercentage = Math.round(
+      (positiveResponses / totalResponses) * 100
+    );
+
+    feedback += `Based on your responses, you seem ${satisfactionPercentage}% satistied with our website. `;
+    feedback +=
+      positiveResponses >= totalResponses / 2
+        ? 'Thank you for your positive feedback!'
+        : 'We will work hard to improve.';
+
+    feedbackSection.hidden = true;
+    resultsSection.hidden = false;
+    resultsContent.textContent = feedback;
+
+    feedbackDetails.innerHTML = detailedFeedback
+      .map((text) => `<p>${text}</p>`)
+      .join('');
+
+    resultsSection.setAttribute('tabindex', '-1');
+    resultsSection.focus();
+    announcer.textContent =
+      'Feedback submitted. Your results are now desplayed.';
+  });
 });
