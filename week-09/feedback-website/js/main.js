@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
   const introSection = document.getElementById('introduction');
   const userInfoSection = document.getElementById('user-info');
