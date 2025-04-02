@@ -81,8 +81,38 @@ document.addEventListener('DOMContentLoaded', () => {
     if (isValid) {
       userName = nameInput.value.trim();
       userInfoSection.hidden = true;
-
+      feedbackSection.hidden = false;
+      feedbackSection.scrollIntoView({ behavior: 'smooth' });
+      document.querySelector('#feedback-form input[type="radio"]').focus();
       announcer.textContent = 'Moved to feedback form section';
     }
+  });
+
+  const feedbackSection = document.getElementById('feedback');
+  const resultsSection = document.getElementById('results');
+
+  const form = document.getElementById('feedback-form');
+  const resultsContent = document.getElementById('results-content');
+  const feedbackDetails = document.querySelector('.feedback-details');
+  const progressFill = document.querySelector('.progress-fill');
+  const progressText = document.querySelector('.progress-text');
+  let answeredQuestions = new Set();
+
+  function updateProgress() {
+    const totalQuestions = 2;
+    const answeredCount = answeredQuestions.size;
+    const percentage = (answeredCount / totalQuestions) * 100;
+
+    progressFill.style.width = `${percentage}%`;
+    progressText.textContent = `${answeredCount} of ${totalQuestions} sections completed`;
+    announcer.textContent = `${answeredCount} of ${totalQuestions} sections completed`;
+  }
+
+  form.querySelectorAll('input[type="radio"]').forEach((radio) => {
+    radio.addEventListener('change', () => {
+      const questionName = radio.name;
+      answeredQuestions.add(questionName);
+      updateProgress();
+    });
   });
 });

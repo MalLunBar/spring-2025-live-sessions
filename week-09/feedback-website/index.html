@@ -38,114 +38,157 @@
     </div>
   </header>
 
-  <main id="main-content">
-    <section
-      id="banner"
-      role="banner"
-    >
-      <img
-        src="assets/banner.jpg"
-        alt=""
-        role="presentation"
-      />
-    </section>
-    <section id="introduction">
-      <h2>Introduction</h2>
-      <p>
-        We value your feedback! Help us improve our website by sharing your
-        experience.
-      </p>
-      <div class="form-controls intro-section">
-        <button
-          id="intro-continue"
-          type="button"
-          class="submit-button"
-        >
-          Continue
-        </button>
-      </div>
-    </section>
-
-    <section
-      id="user-info"
-      hidden
-    >
-      <h2>Your information</h2>
-      <form id="user-info-form">
-        <div class="form-control">
-          <label for="name">Name:</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            aria-required="true"
-            aria-describedby="name-error"
-            placeholder="Example: John Doe"
-          />
-          <div
-            id="name-error"
-            class="error"
-            role="alert"
-            hidden
-          ></div>
-        </div>
-        <div class="form-control">
-          <label for="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            aria-required="true"
-            aria-describedby="email-hint email-error"
-            placeholder="Example: name@example.com"
-          />
-          <div
-            id="email-hint"
-            class="hint"
-          >Example: name@example.com</div>
-          <div
-            id="email-error"
-            class="error"
-            role="alert"
-            hidden
-          ></div>
-        </div>
-        <div class="form-control">
-          <button
-            type="submit"
-            class="submit-button"
-          >
-            Continue to feedback
+    <main id="main-content">
+      <section id="banner" role="banner">
+        <img src="assets/banner.jpg" alt="" role="presentation" />
+      </section>
+      <section id="introduction">
+        <h2>Introduction</h2>
+        <p>
+          We value your feedback! Help us improve our website by sharing your
+          experience.
+        </p>
+        <div class="form-controls intro-section">
+          <button id="intro-continue" type="button" class="submit-button">
+            Continue
           </button>
         </div>
-      </form>
-    </section>
-    <div
-      id="announcer"
-      class="visually-hidden"
-      aria-live="polite"
-    ></div>
-  </main>
+      </section>
 
-  <footer role="contentinfo">
-    <div class="footer-content">
-      <nav
-        role="navigation"
-        aria-label="Footer menu"
-      >
-        <ul>
-          <li>
-            <a href="index.html">Home</a>
-          </li>
-          <li>
-            <a href="about.html">About</a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-  </footer>
+      <section id="user-info" hidden>
+        <h2>Your information</h2>
+        <form id="user-info-form">
+          <div class="form-control">
+            <label for="name">Name:</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              aria-required="true"
+              aria-describedby="name-error"
+              placeholder="Example: John Doe"
+            />
+            <div id="name-error" class="error" role="alert" hidden></div>
+          </div>
+          <div class="form-control">
+            <label for="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              aria-required="true"
+              aria-describedby="email-hint email-error"
+              placeholder="Example: name@example.com"
+            />
+            <div id="email-hint" class="hint">Example: name@example.com</div>
+            <div id="email-error" class="error" role="alert" hidden></div>
+          </div>
+          <div class="form-control">
+            <button type="submit" class="submit-button">
+              Continue to feedback
+            </button>
+          </div>
+        </form>
+      </section>
+      <section id="feedback" hidden>
+        <h2>Share your experience</h2>
 
-  <script src="js/main.js"></script>
-</body>
+        <div class="quiz-progress" role="status" aria-live="polite">
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%"></div>
+          </div>
+          <p class="progress-text">0 of 4 questions answered</p>
+        </div>
 
+        <div
+          class="quiz-instructions"
+          role="group"
+          aria-labelledby="instructions-heading"
+        >
+          <h3 id="instructions-heading">Instructions</h3>
+          <p>Use tab to navigate between sections, space to select an option</p>
+        </div>
+
+        <form id="feedback-form">
+          <fieldset>
+            <legend>Website Navigation Experience</legend>
+            <div class="radio-group" role="radiogroup">
+              <div class="radio-option">
+                <input
+                  type="radio"
+                  name="navigation"
+                  value="easy"
+                  id="nav-easy"
+                />
+                <label for="nav-easy">Easy to navigate</label>
+              </div>
+              <div class="radio-option">
+                <input
+                  type="radio"
+                  name="navigation"
+                  value="difficult"
+                  id="nav-difficult"
+                />
+                <label for="nav-difficult">Difficult to navigate</label>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Content readability</legend>
+            <div class="radio-group" role="radiogroup">
+              <div class="radio-option">
+                <input
+                  type="radio"
+                  name="readability"
+                  value="clear"
+                  id="read-clear"
+                />
+                <label for="read-clear"
+                  >Content is clear and easy to read</label
+                >
+              </div>
+
+              <div class="radio-option">
+                <input
+                  type="radio"
+                  name="readability"
+                  value="unclear"
+                  id="read-unclear"
+                />
+                <label for="read-unclear"
+                  >Content is difficult to read and understand</label
+                >
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </section>
+
+      <section id="results" hidden aria-live="polite">
+        <h2>Thank you</h2>
+        <div id="results-content"></div>
+        <div class="feedback-details"></div>
+      </section>
+
+      <div id="announcer" class="visually-hidden" aria-live="polite"></div>
+    </main>
+
+    <footer role="contentinfo">
+      <div class="footer-content">
+        <nav role="navigation" aria-label="Footer menu">
+          <ul>
+            <li>
+              <a href="index.html">Home</a>
+            </li>
+            <li>
+              <a href="about.html">About</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
 </html>
