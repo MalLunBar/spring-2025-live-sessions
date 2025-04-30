@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ARIA Live Example</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        border: 0;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+      button {
+        padding: 8px 16px;
+        margin: 5px;
+        cursor: pointer;
+      }
+      .error {
+        color: red;
+        margin-top: 5px;
+      }
+      .success {
+        color: green;
+        margin-top: 5px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>ARIA Live Announcer Demo</h1>
+
+    <!-- This is our announcer for important messages -->
+    <div id="announcer" class="visually-hidden" role="alert"></div>
+
+    <!-- This is for less important updates -->
+    <div id="status" class="visually-hidden" aria-live="polite"></div>
+
+    <div class="demo-buttons">
+      <h2>Test Different Announcements</h2>
+      <button id="errorBtn">Trigger Error</button>
+      <button id="successBtn">Trigger Success</button>
+      <button id="updateBtn">Update Status</button>
+    </div>
+
+    <script>
+      // Get our elements
+      const announcer = document.getElementById('announcer');
+      const status = document.getElementById('status');
+
+      // Function for assertive announcements (important/immediate)
+      let announceTimeout;
+      function announce(message) {
+        // Clear any pending announcement
+        clearTimeout(announceTimeout);
+
+        // First clear the announcer
+        announcer.textContent = '';
+
+        // Set the new message immediately after clearing
+        announceTimeout = setTimeout(() => {
+          // Clear and set again to ensure announcement
+          announcer.textContent = '';
+          requestAnimationFrame(() => {
+            announcer.textContent = message;
+          });
+        }, 50);
+      }
+
+      // Function for polite announcements (less important)
+      function updateStatus(message) {
+        status.textContent = message;
+      }
+
+      // Demo button handlers
+      document.getElementById('errorBtn').addEventListener('click', () => {
+        announce(
+          'Error: An important error has occurred that needs immediate attention'
+        );
+      });
+
+      document.getElementById('successBtn').addEventListener('click', () => {
+        announce('Success: Your action was completed successfully');
+      });
+
+      document.getElementById('updateBtn').addEventListener('click', () => {
+        // Using polite announcement for non-critical updates
+        updateStatus('Status: System is processing your request');
+
+        // Simulate a process completion after 2 seconds
+        setTimeout(() => {
+          updateStatus('Status: Process completed');
+        }, 2000);
+      });
+    </script>
+  </body>
+</html>

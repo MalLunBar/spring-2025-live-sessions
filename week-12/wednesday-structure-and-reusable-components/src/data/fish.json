@@ -1,0 +1,48 @@
+{
+  "fish": [
+    {
+      "name": "Clownfish",
+      "image": "https://images.unsplash.com/photo-1596414086775-3e321ab08f36?q=80&w=3548&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "tags": [
+        "Tropical",
+        "Bright orange",
+        "Lives in anemones"
+      ],
+      "info": "https://en.wikipedia.org/wiki/Amphiprioninae",
+      "video": "link"
+    },
+    {
+      "name": "Blue Tang",
+      "image": "https://images.unsplash.com/photo-1701299762068-fa90e1234d45?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "tags": [
+        "Vibrant blue",
+        "Coral reefs",
+        "Also known as Dory"
+      ],
+      "info": "https://en.wikipedia.org/wiki/Paracanthurus",
+      "video": "link"
+    },
+    {
+      "name": "Great White Shark",
+      "image": "https://images.unsplash.com/photo-1704694214588-24f4bae4757b?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      "tags": [
+        "Apex predator",
+        "Oceanic",
+        "Massive size"
+      ],
+      "info": "https://en.wikipedia.org/wiki/Great_white_shark",
+      "video": "link"
+    },
+    {
+      "name": "Moorish Idol",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Zanclus_cornutus_in_Kona.jpg",
+      "tags": [
+        "Reef fish",
+        "Distinct stripes",
+        "Iconic look"
+      ],
+      "info": "https://en.wikipedia.org/wiki/Moorish_idol",
+      "video": "link"
+    }
+  ]
+}
