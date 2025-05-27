@@ -1,50 +1,90 @@
-import { useState } from "react"
+import { useState } from 'react'
+import Card from './components/Card'
+import './App.css'
 
-import { Question } from "./components/Question"
-
-import "./App.css"
 
 const App = () => {
-  const [count, setCount] = useState(0)
+  const [selectedCard, setSelectedCard] = useState('');
+  const [reviews, setReviews] = useState([]); // if implementing an array of reviews
+  const [review, setReview] = useState(''); // if implementing one review only, as string.
+  const [reviewText, setReviewText] = useState('');
 
-  const handleIncrement = () => {
-    setCount(count + 1)
-  }
+  const handleCardSelect = (title) => {
+    setSelectedCard(title);
+  };
 
-  const handleDecrement = () => {
-    setCount(count - 1)
-  }
-
-  const handleReset = () => {
-    setCount(0)
-  }
-
-  const handleDouble = () => {
-    setCount(count * 2)
-  }
-
-  const checkIfOverFive = () => {
-    if (count > 5) {
-      return true
-    }
-  }
+  // setting a signle review as a text, then clearing the text area
+  const handleReviewSubmit = (e) => {
+    e.preventDefault(); // stop from doing its default re render here.
+    setReview(reviewText);
+    setReviewText('');
+  };
 
   return (
-    <>
-      <h1>React State</h1>
-      <p>{count}</p>
-      <button onClick={handleIncrement}>Increase</button>
-      <button onClick={handleDecrement}>Decrease</button>
-      <button 
-        disabled={count === 0}
-        onClick={handleReset}>Reset</button>
-      <button onClick={handleDouble}>Double</button>
-      {count > 5 && <p>You hit over 5</p>}{/* Using Logical AND - this will show the p if the condition is true*/}
-      {count > 5 ? <p>You hit over 5 in count!</p> : <p>You are below 5</p>} {/* Using ternary expression - this will show one of the two p's depending on condition*/}
-      <p>{checkIfOverFive() ? 'Yes' : 'No'}</p> {/*Using ternary expression and if statement broken out into a function. This will show one of the two p's depending on what the function returns*/}
+    <main className="app">
+      <div className="card-container">
+        <Card
+          title="Ice Cream"
+          description="A sweet treat for a hot day. Fantastic!"
+          icon="/images/ice-cream.svg"
+          color="purple"
+          isSelected={selectedCard === "Ice Cream"}
+          onSelect={() => handleCardSelect("Ice Cream")}
+        />
+        <Card
+          title="Donut"
+          description="A sweet treat for a sweet tooth. Yum!"
+          icon="/images/donut.svg"
+          color="teal"
+          isSelected={selectedCard === "Donut"}
+          onSelect={() => handleCardSelect("Donut")}
+        />
+        <Card
+          title="Croissant"
+          description="A hot pastry for a cold day. Delicious!"
+          icon="/images/croissant.svg"
+          color="coral"
+          isSelected={selectedCard === "Croissant"}
+          onSelect={() => handleCardSelect("Croissant")}
+        />
+      </div>
 
-      <Question />
-    </>
+      <div className="review-section">
+        <h2>Leave a Review</h2>
+        <form onSubmit={handleReviewSubmit} className="review-form">
+          <textarea
+            value={reviewText}
+            onChange={(e) => setReviewText(e.target.value)}
+            placeholder={`Write a review for ${selectedCard || 'your favorite dessert'}...`}
+            className="review-input"
+            disabled={!selectedCard} // not able to write anything if not selected a dessert.
+          />
+          <button
+            type="submit"
+            className="submit-review"
+            disabled={!selectedCard || !reviewText.trim()} // button is disabled if no text or not selected a card
+          >
+            Submit Review
+          </button>
+        </form>
+
+        <div className="reviews-container">
+
+          <h3>Recent Review</h3>
+          <p className="review-text">{review}</p>
+
+          {/* IF creating an array of reviews with richer info, this is how to loop through and display them
+          <h3>Recent Reviews</h3>
+          {reviews.map(review => (
+            <div key={review.id} className="review-card">
+              <span className="review-dessert">{review.dessert}</span>
+              <p className="review-text">{review.text}</p>
+            </div>
+          ))} */}
+        </div>
+      </div>
+
+    </main>
   )
 }
 
